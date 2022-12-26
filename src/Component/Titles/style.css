@@ -1,0 +1,14 @@
+.titles{
+    font-family: 'Inter', sans-serif;
+    width: 25rem;
+}
+.titles h2{
+    font-size: 1.8rem;
+    line-height: 2.8rem;
+}
+.titles p{
+    font-size: 1.2rem;
+    padding: 0.5rem 0;
+    line-height: 1.8rem;
+    color: #8692A6;
+}
