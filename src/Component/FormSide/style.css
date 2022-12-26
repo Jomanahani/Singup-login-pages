@@ -1,3 +1,6 @@
 .formSide{
     width: 55vw; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

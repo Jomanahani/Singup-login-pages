@@ -5,7 +5,7 @@ export default class FormSide extends Component {
   render() {
     return (
       <div className='formSide'>
-
+        {this.props.children}
       </div>
     )
   }

@@ -1,10 +1,10 @@
-.introduction{
+.introSide{
     width: 45vw; 
-    padding: 5rem;
-    display: flex;
-    align-items: center;
-    background-color: #1565D8;
-    color: #fff;
-    font-size: 1.3rem;
-    line-height: 2;
+    height: 100vh;
+    /* padding: 5rem; */
+    /* display: flex; */
+    /* align-items: center; */
+    /* color: #fff; */
+    /* font-size: 1.3rem; */
+    /* line-height: 2; */
 }

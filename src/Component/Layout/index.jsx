@@ -8,8 +8,7 @@ export default class Layout extends Component {
   render() {
     return (
         <div className='page'>
-        <IntroSide />
-        <FormSide/>
+          {this.props.children}
         </div>
     )
   }
