@@ -1,0 +1,12 @@
+.logo1 {
+  display: flex;
+  align-self: flex-start;
+  padding: 3rem 5rem;
+  font-size: 1rem;
+  color: #ffffff;
+  font-weight: 400;
+}
+.logo1 img {
+  height: 3.5rem;
+  width: 3.3rem;
+}

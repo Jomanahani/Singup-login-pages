@@ -4,7 +4,7 @@
     background-size: 100% 105%;
     background-repeat: no-repeat;
 }
-.signIntro div{
+.signIntro>div{
     background-color: #1566d8d6;
     height: 100%;
     width: 100%;
