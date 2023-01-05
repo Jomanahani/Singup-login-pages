@@ -1,0 +1,15 @@
+.or {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem auto;
+}
+.or hr {
+  border: none;
+  border-bottom: 2px solid #f5f5f5;
+  width: 10rem;
+}
+.or p {
+  padding: 0 1rem;
+  color: #bababa;
+}
