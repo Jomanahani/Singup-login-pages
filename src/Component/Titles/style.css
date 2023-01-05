@@ -12,3 +12,7 @@
     line-height: 1.8rem;
     color: #8692A6;
 }
+.titles hr{
+    border: none;
+    border-bottom: 1px solid #F5F5F5;
+}

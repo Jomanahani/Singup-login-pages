@@ -1,0 +1,27 @@
+.formItem {
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter", sans-serif;
+}
+.formItem label {
+  color: #696f79;
+  margin-top: 1rem;
+}
+.formItem input {
+  padding: 1rem;
+  margin: 0.5rem 0;
+  outline: none;
+  border: 1px solid #8692a6;
+  font-size: 1rem;
+  width: 25rem;
+  border-radius: 0.3rem;
+  -webkit-border-radius: 0.3rem;
+  -moz-border-radius: 0.3rem;
+  -ms-border-radius: 0.3rem;
+  -o-border-radius: 0.3rem;
+}
+.formItem input::placeholder {
+  color: #8692a6;
+  letter-spacing: 0.1rem;
+  font-size: 0.8rem;
+}
