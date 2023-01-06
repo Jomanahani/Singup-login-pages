@@ -1,15 +1,11 @@
 .NewGames{
-    padding:1rem 2.5rem;
-    position: fixed;
-    margin-top: 5rem;
-    height: 52vh;
+    grid-row-start: 2;
     width: 100%;
 }
 .gameContaner{
     display: flex;
-    height: 18rem;
-    width: 100%;
     overflow-x: auto;   
+    width: calc(100vw - 8rem);
 }
 .gameContaner::-webkit-scrollbar { 
     display: none;
