@@ -5,6 +5,7 @@ import EmailRegister from "../EmailRegister";
 import CheckBox from "../CheckBox";
 import Button from "../Button";
 import OR from "../OR";
+import GoogleBut from "../GoogleBut";
 
 export default class SingupForm extends Component {
   render() {
@@ -16,6 +17,7 @@ export default class SingupForm extends Component {
         <CheckBox />
         <Button title="Register Account" />
         <OR />
+        <GoogleBut/>
       </form>
     );
   }
