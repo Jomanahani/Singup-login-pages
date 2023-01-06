@@ -1,8 +1,9 @@
 .quote {
-  padding: 3rem 5rem;
+  padding: 0 5rem;
+  padding-top: 2rem;
 }
 .quote p {
-  padding: 1rem 0;
+  padding-top: 1rem ;
   color: white;
   font-size: 1.2rem;
   line-height: 2;
@@ -17,4 +18,13 @@
   border: none;
   border-right: 1rem solid white;
   border-bottom: 1rem solid white;
+}
+.logQuote p{
+  color: #696F79;
+}
+.outher{
+  display: flex;
+}
+.hide{
+  display: none;
 }

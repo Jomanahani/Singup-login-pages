@@ -11,7 +11,6 @@ import Back from '../../Component/Back'
 class SingUp extends Component {
   render() {
     return (
-      <div>
       <Layout>
         <IntroSide>
           <SignIntro />
@@ -25,7 +24,6 @@ class SingUp extends Component {
       <SingupForm/>
         </FormSide>
       </Layout>
-      </div>
     );
   }
 }
