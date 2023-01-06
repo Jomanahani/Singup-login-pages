@@ -1,11 +1,11 @@
-.game img{
-    height: 15rem;
-    margin: 1.5rem 0;
-    margin-bottom: 0;
-    margin-right: 3rem;
-    border-radius: 2rem;
-    -webkit-border-radius: 2rem;
-    -moz-border-radius: 2rem;
-    -ms-border-radius: 2rem;
-    -o-border-radius: 2rem;
+.game img {
+  height: 15rem;
+  margin: 1rem 0;
+  margin-bottom: 0;
+  margin-right: 2.5rem;
+  border-radius: 2rem;
+  -webkit-border-radius: 2rem;
+  -moz-border-radius: 2rem;
+  -ms-border-radius: 2rem;
+  -o-border-radius: 2rem;
 }

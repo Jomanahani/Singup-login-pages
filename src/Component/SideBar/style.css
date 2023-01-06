@@ -1,30 +1,26 @@
 .sidebar {
+  grid-column-start: 1;
   display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  min-width: 5vw;
-  height: 100vh;
   color: #fff;
 }
-.sideborder{
-    height: 85vh;
-    margin: auto 0;
-    width: 0.6rem;
-    background-color: rgb(255, 255, 255);
-    box-shadow: inset 1px 2px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 0.5rem;
-    -webkit-border-radius: 0.5rem;
-    -moz-border-radius: 0.5rem;
-    -ms-border-radius: 0.5rem;
-    -o-border-radius: 0.5rem;
+.sideborder {
+  height: 85%;
+  margin: auto 0;
+  width: 0.6rem;
+  background-color: rgb(255, 255, 255);
+  box-shadow: inset 1px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
 }
-.icons>div{
+.icons > div {
   display: flex;
   margin: 8rem 0;
   flex-direction: column;
 }
-.icons img{
+.icons img {
   height: 3rem;
   width: 3rem;
   margin: 1.5rem 1rem;
