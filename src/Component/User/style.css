@@ -1,0 +1,18 @@
+.profile {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-top: 1rem;
+    max-width: 100%;
+    padding-right: 1rem;
+}
+.profile img{
+    height: 5rem;
+    width: 5rem;
+}
+.info{
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+    text-align: end;
+}
