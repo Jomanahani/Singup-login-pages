@@ -15,7 +15,7 @@ export default class Home extends Component {
         <main>
           <User />
           <NewGames />
-          {/* <InformatioSec /> */}
+          <InformatioSec />
         </main>
       </div>
     );
