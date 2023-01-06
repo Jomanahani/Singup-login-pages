@@ -8,11 +8,13 @@ export default class User
   render() {
     return (
       <div className='profile'>
+        <div>
         <div className='info'>
         <h2>Welcome back,</h2>
         <h2>Jenny!</h2>
         </div>
         <img src={Profile} alt='Profile'/>
+        </div>
       </div>
     )
   }

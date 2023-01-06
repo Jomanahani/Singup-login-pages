@@ -1,11 +1,16 @@
 .profile {
-    display: flex;
+    display:block;
     position: fixed;
     top: 0;
     right: 0;
     margin-top: 1rem;
-    max-width: 100%;
-    padding-right: 1rem;
+    margin-left: auto;
+    width: 100%;
+    padding-right: 2rem;
+}
+.profile>div{
+    display: flex;
+    justify-content: flex-end;
 }
 .profile img{
     height: 5rem;
