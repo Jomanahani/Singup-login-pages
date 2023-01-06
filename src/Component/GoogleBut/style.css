@@ -1,0 +1,19 @@
+.google{
+    display: flex;
+    /* justify-content: center; */
+    width: 25rem;
+    padding: 1rem;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 0.3rem;
+    -webkit-border-radius: 0.3rem;
+    -moz-border-radius: 0.3rem;
+    -ms-border-radius: 0.3rem;
+    -o-border-radius: 0.3rem;
+}
+.google p{
+    margin: 0 auto;
+    font-size: 1rem;
+}

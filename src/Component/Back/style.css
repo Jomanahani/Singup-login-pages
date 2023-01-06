@@ -1,0 +1,11 @@
+.back{
+    display: flex;
+    align-self: start;
+    align-items: center;
+    padding: 1rem 0 0rem 4rem;
+    font-size: 1.2rem;
+    color: #8692A6;
+}
+.back p{
+    padding: 0 0.5rem;
+}
