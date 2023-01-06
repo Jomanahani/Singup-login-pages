@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import SideBar from '../../Component/SideBar'
 import User from '../../Component/User'
+import NewGames from '../../Component/NewGames'
 
 import './style.css'
 
@@ -12,6 +13,7 @@ export default class Home extends Component {
         <SideBar/>
         <main>
         <User />
+        <NewGames/>
         </main>
       </div>
     )
