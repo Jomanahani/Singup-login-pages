@@ -1,10 +1,13 @@
-import SingUp from './Pages/SingUp/index'
+import SingUp from './Pages/SingUp'
 import Login from './Pages/Login'
+import Home from './Pages/Home'
+
 function App() {
   return (
     <div className="App">
     {/* <SingUp /> */}
-    <Login />
+    {/* <Login /> */}
+    <Home />
     </div>
   );
 }
