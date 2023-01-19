@@ -5,9 +5,9 @@ import Home from "./Pages/Home";
 function App() {
   return (
     <div className="App">
-      {/* <SingUp /> */}
+      <SingUp />
       {/* <Login /> */}
-      <Home />
+      {/* <Home /> */}
     </div>
   );
 }
