@@ -72,36 +72,37 @@ export default class SingupForm extends Component {
         },
         { abortEarly: false }
       )
-      .then(async ({ name, email, password }) => {
-        const response = await axios.post(`${API_URL}`, {
-          name,
-          email,
-          password,
-        });
+      // .then(async ({ name, email, password }) => {
+      //   const response = await axios.post(`${API_URL}`, {
+      //     name,
+      //     email,
+      //     password,
+      //   });
 
-        if (response) {
-          localStorage.setItem("username", response.data.name);
-          localStorage.setItem("email", response.data.email);
-          localStorage.setItem("password", response.data.password);
-          localStorage.setItem("token", response.data.token);
-          this.props.login();
-        }
-      })
-      .catch((error) => {
-        if (error.errors) {
-          this.setState({ errors: error.errors });
-        } else {
-          this.setState({ errors: [error.message] });
-        }
-      })
-      .finally(() => this.setState({ isLoading: false }));
-  };
+  //       if (response) {
+  //         localStorage.setItem("username", response.data.name);
+  //         localStorage.setItem("email", response.data.email);
+  //         localStorage.setItem("password", response.data.password);
+  //         localStorage.setItem("token", response.data.token);
+  //         this.props.login();
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       if (error.errors) {
+  //         this.setState({ errors: error.errors });
+  //       } else {
+  //         this.setState({ errors: [error.message] });
+  //       }
+  //     })
+  //     .finally(() => this.setState({ isLoading: false }));
+  // };
 
   handleChangeInput = (e) => {
     const { value, id } = e.target;
     const agree = e.target.checked;
     this.setState({ [id]: value, agree });
   };
+  
   showPassword = (e) => {
     e.preventDefault();
     this.setState((prevState) => ({
