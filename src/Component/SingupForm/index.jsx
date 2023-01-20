@@ -10,6 +10,7 @@ import Button from "../Button";
 import OR from "../OR";
 import GoogleBut from "../GoogleBut";
 import StrengthBar from "../StrengthBar";
+import { API_URL } from "../config/api";
 
 const initialData = {
   name: "jomana",
@@ -27,7 +28,7 @@ export default class SingupForm extends Component {
     email: "",
     password: "",
     rePassword: "",
-    agree: false,
+    checked: false,
     passwordType: "password",
     errors: [],
     isLoading: false,
@@ -51,9 +52,9 @@ export default class SingupForm extends Component {
       .string()
       .oneOf([yup.ref("password")], "Passwords must match")
       .required("Confirm password is required"),
-    agree: yup
+    checked: yup
       .boolean()
-      .oneOf([true], "You must agree the terms and conditions")
+      .oneOf([true], "You must checked the terms and conditions")
       .required(),
   });
 
@@ -68,41 +69,41 @@ export default class SingupForm extends Component {
           email: this.state.email,
           password: this.state.password,
           rePassword: this.state.rePassword,
-          agree: this.state.agree,
+          checked: this.state.checked,
         },
         { abortEarly: false }
       )
-      // .then(async ({ name, email, password }) => {
-      //   const response = await axios.post(`${API_URL}`, {
-      //     name,
-      //     email,
-      //     password,
-      //   });
+      .then(async ({ name, email, password }) => {
+        const response = await axios.post(`${API_URL}/users/signup`, {
+          name,
+          email,
+          password,
+        });
 
-  //       if (response) {
-  //         localStorage.setItem("username", response.data.name);
-  //         localStorage.setItem("email", response.data.email);
-  //         localStorage.setItem("password", response.data.password);
-  //         localStorage.setItem("token", response.data.token);
-  //         this.props.login();
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       if (error.errors) {
-  //         this.setState({ errors: error.errors });
-  //       } else {
-  //         this.setState({ errors: [error.message] });
-  //       }
-  //     })
-  //     .finally(() => this.setState({ isLoading: false }));
-  // };
+        if (response) {
+          localStorage.setItem("username", response.data.name);
+          localStorage.setItem("email", response.data.email);
+          localStorage.setItem("password", response.data.password);
+          localStorage.setItem("token", response.data.token);
+          this.props.login();
+        }
+      })
+      .catch((error) => {
+        if (error.errors) {
+          this.setState({ errors: error.errors });
+        } else {
+          this.setState({ errors: [error.message] });
+        }
+      })
+      .finally(() => this.setState({ isLoading: false }));
+  };
 
   handleChangeInput = (e) => {
     const { value, id } = e.target;
-    const agree = e.target.checked;
-    this.setState({ [id]: value, agree });
+    const checked = e.target.checked;
+    this.setState({ [id]: value, checked });
   };
-  
+
   showPassword = (e) => {
     e.preventDefault();
     this.setState((prevState) => ({
@@ -119,6 +120,7 @@ export default class SingupForm extends Component {
             type="text"
             placeholder="Enter your name"
             onChange={this.handleChangeInput}
+            value={this.state.name}
           />
         </div>
         <EmailRegister
@@ -133,15 +135,20 @@ export default class SingupForm extends Component {
           placeholder="Password"
           onChange={this.handleChangeInput}
         />
-        <StrengthBar password={this.state.password} />
+        {<StrengthBar password={this.state.password} />}
         <Password
           label="Repeat password*"
-          value={this.state.email}
+          value={this.state.rePassword}
           placeholder="Repeat password"
           onChange={this.handleChangeInput}
         />
-        <CheckBox />
-        <Button title="Register Account" />
+        <CheckBox
+          checked={this.state.checked}
+          onChange={this.handleChangeInput}
+        />
+        <Button
+          title={this.state.isLoading ? "Loading..." : "Register Account"}
+        />
         <OR />
         <GoogleBut />
       </form>

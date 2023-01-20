@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import {Routes, Route, Navigate } from "react-router-dom";
 
 import SingUp from "./Pages/SingUp";
 import Login from "./Pages/Login";
-import Home from "./Pages/Home";
+// import Home from "./Pages/Home";
 
 export default class App extends Component {
   state = {
@@ -41,15 +41,15 @@ export default class App extends Component {
     return (
       <div className="App">
         <Routes>
-          <Route index element={<Navigate to="/login" />} />
+          <Route index="true" element={<Navigate to="/login" />} />
           <Route
             path="/login"
             element={
               <>
                 {this.state.isAuthorized ? (
-                  <Navigate to="/Home" />
+                  <Navigate to="/login" />
                 ) : (
-                  <Login login={this.login} admin={this.admin} />
+                  <Login login={this.login} admin={this.user} />
                 )}
               </>
             }
@@ -60,7 +60,7 @@ export default class App extends Component {
             element={
               <>
                 {this.state.isAuthorized ? (
-                  <Navigate to="/Home" />
+                  <Navigate to="/login" />
                 ) : (
                   <SingUp login={this.login} />
                 )}
