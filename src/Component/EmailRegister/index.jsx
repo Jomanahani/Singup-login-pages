@@ -7,7 +7,8 @@ export default class EmailRegister extends Component {
     return (
       <div className="formItem">
         <label>{this.props.label}</label>
-        <input id='email' type="email" placeholder={this.props.value} onChange={this.handleChangeInput} />
+        <input id="email" type="email" value={this.props.value} placeholder={this.props.placeholder} onChange={this.handleChangeInput} />
+
       </div>
     );
   }

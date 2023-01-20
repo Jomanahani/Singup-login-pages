@@ -8,8 +8,9 @@ export default class CheckBox extends Component {
       <div className="checkbox">
         <input
           type="checkbox"
-          //   checked={checked}
-          //   onChange={handleChange}
+          checked={this.state.checked}
+          onChange={this.handleChange}
+          id="checked"
           />
           <label>I agree to terms & conditions</label>
       </div>

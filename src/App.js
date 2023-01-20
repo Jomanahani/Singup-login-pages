@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import {Router,Routes, Route, Navigate } from "react-router-dom";
-// import { BrowserRouter } from 'react-router-dom';
+import {Routes, Route, Navigate } from "react-router-dom";
 
 
 import SingUp from "./Pages/SingUp";

@@ -13,6 +13,7 @@ import Button from "../Button";
 import OR from "../OR";
 import GoogleBut from "../GoogleBut";
 import StrengthBar from "../StrengthBar";
+import { API_URL } from "../config/api";
 
 const initialData = {
   name: "jomana",
@@ -30,7 +31,7 @@ export default class SingupForm extends Component {
     email: "",
     password: "",
     rePassword: "",
-    agree: false,
+    checked: false,
     passwordType: "password",
     errors: [],
     isLoading: false,
@@ -54,9 +55,9 @@ export default class SingupForm extends Component {
       .string()
       .oneOf([yup.ref("password")], "Passwords must match")
       .required("Confirm password is required"),
-    agree: yup
+    checked: yup
       .boolean()
-      .oneOf([true], "You must agree the terms and conditions")
+      .oneOf([true], "You must checked the terms and conditions")
       .required(),
   });
 
@@ -71,12 +72,13 @@ export default class SingupForm extends Component {
           email: this.state.email,
           password: this.state.password,
           rePassword: this.state.rePassword,
-          agree: this.state.agree,
+          checked: this.state.checked,
         },
         { abortEarly: false }
       )
       .then(async ({ name, email, password }) => {
-        const response = await axios.post('https://react-tt-api.onrender.com/api/users/signup', {
+        const response = await axios.post(`${API_URL}/users/signup`, {
+
           name,
           email,
           password,
@@ -103,10 +105,10 @@ export default class SingupForm extends Component {
 
   handleChangeInput = (e) => {
     const { value, id } = e.target;
-    const agree = e.target.checked;
-    this.setState({ [id]: value, agree });
+    const checked = e.target.checked;
+    this.setState({ [id]: value, checked });
   };
-  
+
   showPassword = (e) => {
     e.preventDefault();
     this.setState((prevState) => ({
@@ -124,6 +126,7 @@ export default class SingupForm extends Component {
             type="text"
             placeholder="Enter your name"
             onChange={this.handleChangeInput}
+            value={this.state.name}
           />
         </div>
         <EmailRegister
@@ -138,14 +141,17 @@ export default class SingupForm extends Component {
           placeholder="Password"
           onChange={this.handleChangeInput}
         />
-        <StrengthBar password={this.state.password} />
+        {<StrengthBar password={this.state.password} />}
         <RePassword
           label="Repeat password*"
           value={this.state.rePassword}
           placeholder="Repeat password"
           onChange={this.handleChangeInput}
         />
-        <CheckBox />
+        <CheckBox
+          checked={this.state.checked}
+          onChange={this.handleChangeInput}
+        />
         <Button title={this.state.isLoading?" Loading... ":" Register Account " }/>
         <OR />
         <GoogleBut />
