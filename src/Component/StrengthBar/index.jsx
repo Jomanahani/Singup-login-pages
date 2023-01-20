@@ -6,17 +6,16 @@ import "./style.css";
 let width = 0;
 export default class StrengthBar extends Component {
   render() {
-    const {password} = this.props;
-    if (password.length >= 8) {
+    if (this.props.password.length >= 8) {
       width += 25;
     }
-    if (password.match(/[0-9]/)) {
+    if (this.props.password.match(/[0-9]/)) {
       width += 25;
     }
-    if (password.match(/[!@#$%^&*]/)) {
+    if (this.props.password.match(/[!@#$%^&*]/)) {
       width += 25;
     }
-    if (password.match(/[a-z]/) && password.match(/[A-Z]/)) {
+    if (this.props.password.match(/[a-z]/) && this.props.password.match(/[A-Z]/)) {
       width += 25;
     }
     return (

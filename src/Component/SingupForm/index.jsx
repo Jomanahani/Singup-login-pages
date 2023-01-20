@@ -2,8 +2,11 @@ import React, { Component } from "react";
 
 import * as yup from "yup";
 import axios from "axios";
+import { toast } from "react-toastify";
+
 
 import Password from "../Password";
+import RePassword from "../RePassword";
 import EmailRegister from "../EmailRegister";
 import CheckBox from "../CheckBox";
 import Button from "../Button";
@@ -72,30 +75,31 @@ export default class SingupForm extends Component {
         },
         { abortEarly: false }
       )
-      // .then(async ({ name, email, password }) => {
-      //   const response = await axios.post(`${API_URL}`, {
-      //     name,
-      //     email,
-      //     password,
-      //   });
+      .then(async ({ name, email, password }) => {
+        const response = await axios.post('https://react-tt-api.onrender.com/api/users/signup', {
+          name,
+          email,
+          password,
+        });
 
-  //       if (response) {
-  //         localStorage.setItem("username", response.data.name);
-  //         localStorage.setItem("email", response.data.email);
-  //         localStorage.setItem("password", response.data.password);
-  //         localStorage.setItem("token", response.data.token);
-  //         this.props.login();
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       if (error.errors) {
-  //         this.setState({ errors: error.errors });
-  //       } else {
-  //         this.setState({ errors: [error.message] });
-  //       }
-  //     })
-  //     .finally(() => this.setState({ isLoading: false }));
-  // };
+        if (response) {
+          localStorage.setItem("username", response.data.name);
+          localStorage.setItem("email", response.data.email);
+          localStorage.setItem("password", response.data.password);
+          localStorage.setItem("token", response.data.token);
+          this.props.login();
+        }
+      })
+      .catch((error) => {
+        if (error.errors) {
+          toast.error(error.message)
+          this.setState({ errors: error.errors });
+        } else {
+          this.setState({ errors: [error.message] });
+        }
+      })
+      .finally(() => this.setState({ isLoading: false }));
+  };
 
   handleChangeInput = (e) => {
     const { value, id } = e.target;
@@ -114,8 +118,9 @@ export default class SingupForm extends Component {
     return (
       <form onSubmit={(e) => this.handleSubmit(e)}>
         <div className="formItem">
-          <label>User Name*</label>
+          <label >User Name*</label>
           <input
+          id='name'
             type="text"
             placeholder="Enter your name"
             onChange={this.handleChangeInput}
@@ -134,14 +139,14 @@ export default class SingupForm extends Component {
           onChange={this.handleChangeInput}
         />
         <StrengthBar password={this.state.password} />
-        <Password
+        <RePassword
           label="Repeat password*"
-          value={this.state.email}
+          value={this.state.rePassword}
           placeholder="Repeat password"
           onChange={this.handleChangeInput}
         />
         <CheckBox />
-        <Button title="Register Account" />
+        <Button title={this.state.isLoading?" Loading... ":" Register Account " }/>
         <OR />
         <GoogleBut />
       </form>
