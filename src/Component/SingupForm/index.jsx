@@ -2,8 +2,11 @@ import React, { Component } from "react";
 
 import * as yup from "yup";
 import axios from "axios";
+import { toast } from "react-toastify";
+
 
 import Password from "../Password";
+import RePassword from "../RePassword";
 import EmailRegister from "../EmailRegister";
 import CheckBox from "../CheckBox";
 import Button from "../Button";
@@ -75,6 +78,7 @@ export default class SingupForm extends Component {
       )
       .then(async ({ name, email, password }) => {
         const response = await axios.post(`${API_URL}/users/signup`, {
+
           name,
           email,
           password,
@@ -90,6 +94,7 @@ export default class SingupForm extends Component {
       })
       .catch((error) => {
         if (error.errors) {
+          toast.error(error.message)
           this.setState({ errors: error.errors });
         } else {
           this.setState({ errors: [error.message] });
@@ -115,8 +120,9 @@ export default class SingupForm extends Component {
     return (
       <form onSubmit={(e) => this.handleSubmit(e)}>
         <div className="formItem">
-          <label>User Name*</label>
+          <label >User Name*</label>
           <input
+          id='name'
             type="text"
             placeholder="Enter your name"
             onChange={this.handleChangeInput}
@@ -136,7 +142,7 @@ export default class SingupForm extends Component {
           onChange={this.handleChangeInput}
         />
         {<StrengthBar password={this.state.password} />}
-        <Password
+        <RePassword
           label="Repeat password*"
           value={this.state.rePassword}
           placeholder="Repeat password"
@@ -146,9 +152,7 @@ export default class SingupForm extends Component {
           checked={this.state.checked}
           onChange={this.handleChangeInput}
         />
-        <Button
-          title={this.state.isLoading ? "Loading..." : "Register Account"}
-        />
+        <Button title={this.state.isLoading?" Loading... ":" Register Account " }/>
         <OR />
         <GoogleBut />
       </form>
