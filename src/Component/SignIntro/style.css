@@ -1,7 +1,7 @@
 .signIntro{
-    height: 100vh;
+    height: 110%;
     background-image: url(../../assetse/Background2.png);
-    background-size: 100% 105%;
+    background-size: 105% 105%;
     background-repeat: no-repeat;
 }
 .signIntro>div{

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
 
 import { IoIosArrowBack } from 'react-icons/io'
 
@@ -9,7 +10,9 @@ export default class Back extends Component {
     return (
       <div className='back'>
         <IoIosArrowBack />
+        <Link to="/login">
         <p>Back</p>
+        </Link>
       </div>
     )
   }
