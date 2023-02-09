@@ -1,12 +1,29 @@
-.NewGames{
-    grid-row-start: 2;
-    width: 100%;
+.NewGames {
+  grid-row-start: 2;
+  width: 100%;
 }
-.gameContaner{
-    display: flex;
-    overflow-x: auto;   
-    width: calc(100vw - 8rem);
+.gameContaner {
+  display: flex;
+  justify-content: space-between;
+  overflow-x: auto;
+  width: calc(100vw - 8rem);
 }
-.gameContaner::-webkit-scrollbar { 
-    display: none;
+.gameContaner::-webkit-scrollbar {
+  display: none;
+}
+.gameContaner img {
+  height: 15rem;
+  margin-top: 1rem;
+  margin-right: 1.5rem;
+  border-radius: 2rem;
+  -webkit-border-radius: 2rem;
+  -moz-border-radius: 2rem;
+  -ms-border-radius: 2rem;
+  -o-border-radius: 2rem;
+}
+.gameContaner img:last-of-type {
+  margin-right: 0;
+}
+.last_game {
+  margin-right: 0;
 }

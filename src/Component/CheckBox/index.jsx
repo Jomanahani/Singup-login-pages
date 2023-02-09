@@ -7,12 +7,13 @@ export default class CheckBox extends Component {
     return (
       <div className="checkbox">
         <input
+          id={this.props.id}
           type="checkbox"
-          checked={this.state.checked}
-          onChange={this.handleChange}
-          id="checked"
-          />
-          <label>I agree to terms & conditions</label>
+          checked={this.props.checked}
+          onChange={this.props.onChange}
+          name={this.props.name}
+        />
+        <label>I agree to terms & conditions</label>
       </div>
     );
   }

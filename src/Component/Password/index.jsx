@@ -5,8 +5,13 @@ export default class Password extends Component {
     return (
       <div className="formItem">
         <label>{this.props.label}</label>
-        <input id="password" type="text" value={this.props.value} placeholder={this.props.placeholder} onChange={this.handleChangeInput}/>
-
+        <input
+          id={this.props.id}
+          type="text"
+          placeholder={this.props.placeholder}
+          value={this.props.value}
+          onChange={this.props.onChange}
+        />
       </div>
     );
   }

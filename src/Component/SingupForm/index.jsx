@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-
 import * as yup from "yup";
-import axios from "axios";
 import { toast } from "react-toastify";
-
 
 import Password from "../Password";
 import RePassword from "../RePassword";
@@ -12,13 +9,12 @@ import CheckBox from "../CheckBox";
 import Button from "../Button";
 import OR from "../OR";
 import GoogleBut from "../GoogleBut";
-import StrengthBar from "../StrengthBar";
-import { API_URL } from "../config/api";
 
 const initialData = {
   name: "jomana",
   email: "jomana@gmail.com",
   password: "jomana123123",
+  rePassword: "jomana123123",
   checked: false,
 };
 
@@ -34,22 +30,20 @@ export default class SingupForm extends Component {
     checked: false,
     passwordType: "password",
     errors: [],
-    isLoading: false,
     myData: initialData,
   };
-
+  
   schema = yup.object().shape({
     name: yup
       .string()
-      .min(4, "Name must be at least 4 characters long")
+      .min(6, "Name must be at least 6 characters long")
       .max(16, "Name must be no more than 16 characters")
       .required("Name is required"),
     email: yup.string().email("Invalid email").required("Email is required"),
     password: yup
       .string()
-      .min(6, "Password must be at least 8 characters long")
-      .max(16, "Password must be no more than 18 characters")
-      .matches(regularExpression, "Invalid Password, Tray again")
+      .min(8, "Password must be at least 8 characters long")
+      .matches(regularExpression, "Invalid Password")
       .required("Password is required"),
     rePassword: yup
       .string()
@@ -57,15 +51,24 @@ export default class SingupForm extends Component {
       .required("Confirm password is required"),
     checked: yup
       .boolean()
-      .oneOf([true], "You must checked the terms and conditions")
+      .oneOf([true], "You must agree the terms and conditions")
       .required(),
   });
+
+  handleChangeInput = (e) => {
+    const { value, id } = e.target;
+    this.setState({ [id]: value });
+  };
+
+  handleClick = (e) => {
+    const checkedv = e.target.checked;
+    this.setState({ checked: checkedv });
+  };
 
   handleSubmit = async (e) => {
     e.preventDefault();
 
-    this.setState({ isLoading: true });
-    this.schema
+    await this.schema
       .validate(
         {
           name: this.state.name,
@@ -76,83 +79,57 @@ export default class SingupForm extends Component {
         },
         { abortEarly: false }
       )
-      .then(async ({ name, email, password }) => {
-        const response = await axios.post(`${API_URL}/users/signup`, {
-
-          name,
-          email,
-          password,
-        });
-
-        if (response) {
-          localStorage.setItem("username", response.data.name);
-          localStorage.setItem("email", response.data.email);
-          localStorage.setItem("password", response.data.password);
-          localStorage.setItem("token", response.data.token);
-          this.props.login();
-        }
+      .then(() => {
+        toast.success("Welcome");
+        console.log("valid");
       })
-      .catch((error) => {
-        if (error.errors) {
-          toast.error(error.message)
-          this.setState({ errors: error.errors });
-        } else {
-          this.setState({ errors: [error.message] });
-        }
-      })
-      .finally(() => this.setState({ isLoading: false }));
-  };
-
-  handleChangeInput = (e) => {
-    const { value, id } = e.target;
-    const checked = e.target.checked;
-    this.setState({ [id]: value, checked });
-  };
-
-  showPassword = (e) => {
-    e.preventDefault();
-    this.setState((prevState) => ({
-      passwordType: prevState.passwordType === "text" ? "password" : "text",
-    }));
+      .catch((e) => {
+        // toast.error(e.message);
+        console.log(e.errors);
+        this.setState({ errors: [e.errors] });
+      });
   };
 
   render() {
     return (
       <form onSubmit={(e) => this.handleSubmit(e)}>
         <div className="formItem">
-          <label >User Name*</label>
+          <label>Name*</label>
           <input
-          id='name'
+            id="name"
             type="text"
-            placeholder="Enter your name"
-            onChange={this.handleChangeInput}
+            placeholder="Enter your Name"
             value={this.state.name}
+            onChange={this.handleChangeInput}
           />
         </div>
         <EmailRegister
+          id="email"
           label="Email address*"
-          value={this.state.email}
           placeholder="Enter email address"
           onChange={this.handleChangeInput}
         />
         <Password
+          id="password"
           label="Create password*"
-          value={this.state.password}
           placeholder="Password"
+          value={this.state.password}
           onChange={this.handleChangeInput}
         />
-        {<StrengthBar password={this.state.password} />}
         <RePassword
+          id="rePassword"
           label="Repeat password*"
-          value={this.state.rePassword}
           placeholder="Repeat password"
+          value={this.state.rePassword}
           onChange={this.handleChangeInput}
         />
         <CheckBox
+          id="checked"
+          onChange={this.handleClick}
           checked={this.state.checked}
-          onChange={this.handleChangeInput}
+          name="checked"
         />
-        <Button title={this.state.isLoading?" Loading... ":" Register Account " }/>
+        <Button title="Register Account" />
         <OR />
         <GoogleBut />
       </form>

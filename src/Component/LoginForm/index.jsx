@@ -48,7 +48,7 @@ export default class LoginForm extends Component {
       localStorage.setItem("token", data.token);
       localStorage.setItem("email", data.email);
       localStorage.setItem("username", data.name);
-      localStorage.setItem("Admin", data.isAdmin);
+      localStorage.setItem("user", data.isUser);
 
       this.props.login();
     } catch (error) {
@@ -75,7 +75,7 @@ export default class LoginForm extends Component {
         <Button title={this.state.isLoading ? "Loading..." : "Login"} />
         <div className="Register">
             Don’t have an account?
-            <Link to="/singup"> Register </Link>
+            <Link to="/signup"> Register </Link>
           </div>
       </form>
     )

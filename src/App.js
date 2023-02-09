@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 import {Routes, Route, Navigate } from "react-router-dom";
-
-
-import SingUp from "./Pages/SingUp";
-import Login from "./Pages/Login";
-// import Home from "./Pages/Home";
-
+import  { Authorized , NotAuthorized } from './Router'
 export default class App extends Component {
   state = {
-    isAuthorized: false,
+    isAuthorized: true,
     isUser: false,
   };
 
@@ -17,7 +12,7 @@ export default class App extends Component {
     if (token) {
       this.setState({ isAuthorized: true });
     }
-    const user = localStorage.getItem("users");
+    const user = localStorage.getItem("user");
     if (user === "false") {
       this.setState({ isUser: false });
     } else {
@@ -41,40 +36,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <SingUp/>
-        <Router>
-        <Routes>
-          <Route index="true" element={<Navigate to="/login" />} />
-          <Route
-            path="/login"
-            element={
-              <>
-                {this.state.isAuthorized ? (
-                  <Navigate to="/login" />
-                ) : (
-                  <Login login={this.login} admin={this.user} />
-                )}
-              </>
-            }
-          />
-
-          <Route
-            path="/signup"
-            element={
-              <>
-                {this.state.isAuthorized ? (
-                  <Navigate to="/login" />
-                ) : (
-                  <SingUp login={this.login} />
-                )}
-              </>
-            }
-          />
-
-          
-          <Route path="*" element={<h1>page not found 404</h1>} />
-        </Routes>
-        </Router>
+      {this.state.isAuthorized ? <Authorized/> : <NotAuthorized/>}
       </div>
     );
   }
