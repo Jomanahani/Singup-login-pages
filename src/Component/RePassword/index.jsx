@@ -6,10 +6,11 @@ export default class RePassword extends Component {
       <div className="formItem">
         <label>{this.props.label}</label>
         <input
-          id="rePassword"
+          id={this.props.id}
           type="text"
-          placeholder={this.props.value}
-          onChange={this.handleChangeInput}
+          placeholder={this.props.placeholder}
+          value={this.props.value}
+          onChange={this.props.onChange}
         />
       </div>
     );

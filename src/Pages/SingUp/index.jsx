@@ -21,7 +21,7 @@ class SingUp extends Component {
         title="Register Individual Account!"
         supTitle="For the purpose of gamers regulation, your details are required."
       />
-      <SingupForm/>
+      <SingupForm login={this.props.login}/>
         </FormSide>
       </Layout>
     );
