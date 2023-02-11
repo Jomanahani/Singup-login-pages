@@ -1,0 +1,58 @@
+.Back{
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding: 2rem 3.5rem;
+  text-decoration: none;
+  color: black;
+}
+.account {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 6% auto;
+  gap: 1.5rem;
+  height: 65vh;
+  width: 60%;
+}
+.account img {
+  height: 10rem;
+  width: 10rem;
+}
+.account h1 {
+  text-align: center;
+  font-size: 2rem;
+}
+.profile_info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 50%;
+  gap: 12px;
+  padding: 5% ;
+  font-size: 2rem;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  background-color: #999;
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
+}
+.user_info{
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(127, 223, 255);
+  padding-top: 0;
+}
+.userslist {
+  font-size: larger;
+  color: aliceblue;
+  background-color: #263159;
+  padding: 20px;
+  border-radius: 20px;
+  text-decoration: none;
+}

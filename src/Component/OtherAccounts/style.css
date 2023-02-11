@@ -1,0 +1,13 @@
+.links {
+    display: flex;
+    justify-content: space-around;
+    margin: 1.5rem 0;
+  }
+  .links div {
+    display: flex;
+    align-items: center;
+    height: 4rem;
+    padding: 10px 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 6px;
+  }

@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import {Routes, Route, Navigate } from "react-router-dom";
-import  { Authorized , NotAuthorized } from './Router'
+import { Authorized, NotAuthorized } from "./Router";
 export default class App extends Component {
   state = {
-    isAuthorized: true,
+    isAuthorized: false,
     isUser: false,
   };
 
@@ -36,7 +35,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-      {this.state.isAuthorized ? <Authorized/> : <NotAuthorized/>}
+        {this.state.isAuthorized ? <Authorized logout={this.logout} /> : <NotAuthorized login={this.login} />}
       </div>
     );
   }

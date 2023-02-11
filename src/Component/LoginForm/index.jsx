@@ -1,21 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 import { object, string } from "yup";
 import axios from "axios";
-import { API_URL } from "../config/api";
 import { Link } from "react-router-dom";
 
-import Password from "../Password";
-import EmailRegister from "../EmailRegister";
+import FormInput from "../FormInput";
 import Button from "../Button";
+import OtherAccounts from "../OtherAccounts";
 import OR from "../OR";
+import { API_URL } from "../../config/api";
 
-import './style.css'
+import "./style.css";
 
-const initialData = {
-  email: "jomana@gmail.com",
-  password: "jomana123123",
-};
 export default class LoginForm extends Component {
   state = {
     email: "",
@@ -23,12 +19,11 @@ export default class LoginForm extends Component {
     passwordType: "password",
     isLoading: false,
     errors: [],
-    myData: initialData,
   };
 
   schema = object().shape({
     email: string().required(),
-    password: string().required(),
+    password: string().required("password is a required field"),
   });
 
   handleSubmit = async (e) => {
@@ -41,21 +36,22 @@ export default class LoginForm extends Component {
         { abortEarly: false }
       );
 
-      const { data } = await axios.post(`${API_URL}/users/login`, {
+      const res = await axios.post(`${API_URL}/users/login`, {
         email: this.state.email,
         password: this.state.password,
       });
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("email", data.email);
-      localStorage.setItem("username", data.name);
-      localStorage.setItem("user", data.isUser);
+
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("email", res.data.email);
+      localStorage.setItem("userName", res.data.name);
+      localStorage.setItem("user", res.data.isUser);
 
       this.props.login();
-    } catch (error) {
-      if (error.errors) {
-        this.setState({ errors: error.errors });
+    } catch (e) {
+      if (e.errors) {
+        this.setState({ errors: [...e.errors ] });
       } else {
-        this.setState({ errors: [error.message] });
+        this.setState({ errors: [...e.message] });
       }
     } finally {
       this.setState({ isLoading: false });
@@ -66,18 +62,41 @@ export default class LoginForm extends Component {
     const { value, id } = e.target;
     this.setState({ [id]: value });
   };
+
+  handlePasswordShow = (e) => {
+    e.preventDefault();
+    this.setState((prevState) => ({
+      passwordType: prevState.passwordType === "text" ? "password" : "text",
+    }));
+  };
+
   render() {
     return (
-      <form className='loginForm' onSubmit={(e) => this.handleSubmit(e)}>
+      <form className="loginForm" onSubmit={(e) => this.handleSubmit(e)}>
+        <OtherAccounts />
         <OR />
-        <EmailRegister label="Your email" placeholder="Write your email" value={this.state.email} />
-        <Password label="Enter your password" placeholder="Password" value={this.state.password}/>
+        <p className='error'>{this.state.errors }</p>
+        <FormInput
+          id="email"
+          type="email"
+          label="Your email"
+          placeholder="Write your email"
+          value={this.state.email}
+          onChange={this.handleChangeInput}
+        />
+        <FormInput
+          id="password"
+          label="Enter your password"
+          placeholder="Password"
+          value={this.state.password}
+          onChange={this.handleChangeInput}
+        />
         <Button title={this.state.isLoading ? "Loading..." : "Login"} />
         <div className="Register">
-            Don’t have an account?
-            <Link to="/signup"> Register </Link>
-          </div>
+          Don’t have an account?
+          <Link to="/signup"> Register </Link>
+        </div>
       </form>
-    )
+    );
   }
 }

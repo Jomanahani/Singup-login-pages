@@ -11,14 +11,20 @@
 }
 .profile>div{
     display: flex;
+    align-items: center;
     justify-content: flex-end;
 }
 .profile img{
     height: 5rem;
     width: 5rem;
+    cursor: pointer;
 }
 .info{
     flex-direction: column;
     padding: 0.5rem 1rem;
     text-align: end;
+}
+.icon{
+    font-size: 2.3rem;
+    margin-left: 1rem;
 }
