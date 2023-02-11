@@ -13,7 +13,7 @@ export default class Home extends Component {
       <div className="home">
         <SideBar />
         <main>
-          <User />
+          <User logout={this.props.logout} />
           <NewGames />
           <InformatioSec />
         </main>

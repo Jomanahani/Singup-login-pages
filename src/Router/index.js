@@ -4,27 +4,28 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Login from '../Pages/Login'
 import Signup from '../Pages/SingUp'
 import Home from '../Pages/Home'
+import Profile from '../Pages/Profile'
 
 
-export function NotAuthorized() {
+export function NotAuthorized(props) {
   return (
     <>
       <Routes>
-        <Route index element={<Login />} />
-        <Route path='/signup' element={<Signup />} />
+        <Route index element={<Login login={props.login} />} />
+        <Route path='/signup' element={<Signup  login={props.login} />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
   );
 }
 
-export function Authorized() {
+export function Authorized(props) {
   return (
     <>
       <Routes>
-        <Route index element={<Home />} />
-        {/* <Route path='' element={< />} />
-        <Route path='' element={< />} /> */}
+        <Route index element={<Home logout={props.logout} />} />
+        {/* <Route path='' element={< />} /> */}
+        <Route path='/profile' element={<Profile />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>

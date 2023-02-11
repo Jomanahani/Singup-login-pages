@@ -20,7 +20,7 @@ export default class Login extends Component {
             title="Join the game!"
             supTitle="Go inside the best gamers social network!"
           />
-          <LoginForm />
+          <LoginForm login={this.props.login} />
         </FormSide>
       </Layout>
     );

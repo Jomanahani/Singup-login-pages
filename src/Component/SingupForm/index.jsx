@@ -1,22 +1,14 @@
 import React, { Component } from "react";
 import * as yup from "yup";
-import { toast } from "react-toastify";
+import axios from "axios";
 
-import Password from "../Password";
-import RePassword from "../RePassword";
-import EmailRegister from "../EmailRegister";
 import CheckBox from "../CheckBox";
 import Button from "../Button";
 import OR from "../OR";
 import GoogleBut from "../GoogleBut";
-
-const initialData = {
-  name: "jomana",
-  email: "jomana@gmail.com",
-  password: "jomana123123",
-  rePassword: "jomana123123",
-  checked: false,
-};
+import { API_URL } from "../../config/api";
+import FormInput from "../FormInput";
+import StrengthBar from "../StrengthBar";
 
 const regularExpression =
   /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
@@ -30,9 +22,10 @@ export default class SingupForm extends Component {
     checked: false,
     passwordType: "password",
     errors: [],
-    myData: initialData,
+    strength: 0,
+    isLoading: false,
   };
-  
+
   schema = yup.object().shape({
     name: yup
       .string()
@@ -65,10 +58,22 @@ export default class SingupForm extends Component {
     this.setState({ checked: checkedv });
   };
 
+  PasswordStrength = (password) => {
+    let strength = 0;
+    if (password.length >= 8) strength += 1;
+    if (password.match(/[0-9]/)) strength += 1;
+    if (password.match(/[!@#$%^&*]/)) strength += 1;
+    if (password.match(/[a-z]/) && password.match(/[A-Z]/)) {
+      strength += 1;
+    }
+    this.setState({ strength: strength });
+  };
+
   handleSubmit = async (e) => {
     e.preventDefault();
 
-    await this.schema
+    this.setState({ isLoading: true });
+    this.schema
       .validate(
         {
           name: this.state.name,
@@ -79,46 +84,68 @@ export default class SingupForm extends Component {
         },
         { abortEarly: false }
       )
-      .then(() => {
-        toast.success("Welcome");
-        console.log("valid");
+      .then(async ({ name, email, password }) => {
+        const res = await axios.post(`${API_URL}/users/signup`, {
+          name,
+          email,
+          password,
+        });
+
+        if (res) {
+          localStorage.setItem("userName", res.data.name);
+          localStorage.setItem("email", res.data.email);
+          localStorage.setItem("password", res.data.password);
+          localStorage.setItem("token", res.data.token);
+          this.props.login();
+        }
       })
       .catch((e) => {
-        // toast.error(e.message);
-        console.log(e.errors);
-        this.setState({ errors: [e.errors] });
-      });
+        if (e.errors) {
+          this.setState({ errors: [...e.errors] });
+        } else {
+          this.setState({ errors: [...e.message] });
+        }
+      })
+      .finally(() => this.setState({ isLoading: false }));
   };
 
   render() {
     return (
       <form onSubmit={(e) => this.handleSubmit(e)}>
-        <div className="formItem">
-          <label>Name*</label>
-          <input
-            id="name"
-            type="text"
-            placeholder="Enter your Name"
-            value={this.state.name}
-            onChange={this.handleChangeInput}
-          />
-        </div>
-        <EmailRegister
+        <p className="error">{this.state.errors}</p>
+
+        <FormInput
+          id="name"
+          label="Name*"
+          type="text"
+          placeholder="Enter your Name"
+          value={this.state.name}
+          onChange={this.handleChangeInput}
+        />
+        <FormInput
           id="email"
           label="Email address*"
+          type="email"
           placeholder="Enter email address"
+          value={this.state.email}
           onChange={this.handleChangeInput}
         />
-        <Password
+        <FormInput
           id="password"
           label="Create password*"
+          type="password"
           placeholder="Password"
           value={this.state.password}
-          onChange={this.handleChangeInput}
+          onChange={(e) => {
+            this.handleChangeInput(e);
+            this.PasswordStrength(e.target.value);
+          }}
         />
-        <RePassword
+        <StrengthBar strength={this.state.strength} />
+        <FormInput
           id="rePassword"
           label="Repeat password*"
+          type="password"
           placeholder="Repeat password"
           value={this.state.rePassword}
           onChange={this.handleChangeInput}
@@ -129,7 +156,9 @@ export default class SingupForm extends Component {
           checked={this.state.checked}
           name="checked"
         />
-        <Button title="Register Account" />
+        <Button
+          title={this.state.isLoading ? "Loading..." : "Register Account"}
+        />
         <OR />
         <GoogleBut />
       </form>
