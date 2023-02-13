@@ -10,6 +10,9 @@ import OtherAccounts from "../OtherAccounts";
 import OR from "../OR";
 import { API_URL } from "../../config/api";
 
+import { AiOutlineEye } from "react-icons/ai";
+import { AiOutlineEyeInvisible } from "react-icons/ai";
+
 import "./style.css";
 
 export default class LoginForm extends Component {
@@ -49,7 +52,7 @@ export default class LoginForm extends Component {
       this.props.login();
     } catch (e) {
       if (e.errors) {
-        this.setState({ errors: [...e.errors ] });
+        this.setState({ errors: [...e.errors] });
       } else {
         this.setState({ errors: [...e.message] });
       }
@@ -66,7 +69,7 @@ export default class LoginForm extends Component {
   handlePasswordShow = (e) => {
     e.preventDefault();
     this.setState((prevState) => ({
-      passwordType: prevState.passwordType === "text" ? "password" : "text",
+      passwordType: prevState.passwordType === "password" ? "text" : "password",
     }));
   };
 
@@ -75,7 +78,7 @@ export default class LoginForm extends Component {
       <form className="loginForm" onSubmit={(e) => this.handleSubmit(e)}>
         <OtherAccounts />
         <OR />
-        <p className='error'>{this.state.errors }</p>
+        <p className="error">{this.state.errors}</p>
         <FormInput
           id="email"
           type="email"
@@ -86,11 +89,19 @@ export default class LoginForm extends Component {
         />
         <FormInput
           id="password"
+          type={this.state.passwordType}
           label="Enter your password"
           placeholder="Password"
           value={this.state.password}
           onChange={this.handleChangeInput}
         />
+        <div className="password_Show_Login" onClick={this.handlePasswordShow}>
+          {this.state.passwordType === "password" ? (
+            <AiOutlineEyeInvisible />
+            ) : (
+              <AiOutlineEye />
+          )}
+        </div>
         <Button title={this.state.isLoading ? "Loading..." : "Login"} />
         <div className="Register">
           Don’t have an account?

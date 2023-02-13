@@ -10,6 +10,9 @@ import { API_URL } from "../../config/api";
 import FormInput from "../FormInput";
 import StrengthBar from "../StrengthBar";
 
+import { AiOutlineEye } from "react-icons/ai";
+import { AiOutlineEyeInvisible } from "react-icons/ai";
+
 const regularExpression =
   /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
@@ -67,6 +70,12 @@ export default class SingupForm extends Component {
       strength += 1;
     }
     this.setState({ strength: strength });
+  };
+
+  handlePasswordShow = (e) => {
+    this.setState((prevState) => ({
+      passwordType: prevState.passwordType === "password" ? "text" : "password",
+    }));
   };
 
   handleSubmit = async (e) => {
@@ -133,7 +142,7 @@ export default class SingupForm extends Component {
         <FormInput
           id="password"
           label="Create password*"
-          type="password"
+          type={this.state.passwordType}
           placeholder="Password"
           value={this.state.password}
           onChange={(e) => {
@@ -141,6 +150,13 @@ export default class SingupForm extends Component {
             this.PasswordStrength(e.target.value);
           }}
         />
+        <div className="password_Show_singup" onClick={this.handlePasswordShow}>
+          {this.state.passwordType === "password" ? (
+            <AiOutlineEyeInvisible />
+            ) : (
+              <AiOutlineEye />
+          )}
+        </div>
         <StrengthBar strength={this.state.strength} />
         <FormInput
           id="rePassword"
