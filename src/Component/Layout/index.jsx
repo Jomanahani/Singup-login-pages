@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import FormSide from "../FormSide/index";
-import IntroSide from "../IntroSide/index";
 
 import "./style.css";
 
