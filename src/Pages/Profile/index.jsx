@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import axios from "axios";
 import { API_URL } from "./../../config/api";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 
 import profile from "../../assetse/profile.jpg";
@@ -55,13 +55,13 @@ export default class Profile extends Component {
               <p className="user_info">{this.state.email}</p>
             </div>
           )}
-          {this.state.admin ? (
+          {/* {this.state.admin ? (
             <NavLink to="/userslist" className={"userslist"}>
               Users List
             </NavLink>
           ) : (
             ""
-          )}
+          )} */}
         </div>
       </>
     );
