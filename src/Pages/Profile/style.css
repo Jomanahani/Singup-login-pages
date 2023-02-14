@@ -1,7 +1,6 @@
 .Back{
   font-size: 1.3rem;
   font-weight: 500;
-  padding:0 2rem;
   text-decoration: none;
   color: black;
   cursor: pointer;
@@ -10,6 +9,7 @@
 .Back p{
   display: flex;
   align-items: center;
+  padding: 0 2rem;
 }
 .account {
   display: flex;
@@ -17,7 +17,7 @@
   justify-content: center;
   align-items: center;
   margin:0 auto;
-  gap: 1.2rem;
+  gap: 1rem;
   height: 65vh;
   width: 60%;
 }

@@ -44,7 +44,7 @@ export default class User extends Component {
             <img title="profile" src={Avatar} alt="Profile" />
           </Link>
           {this.state.admin ? (
-            <Link to="/userlist" className="userslist">
+            <Link to="/usersList" className="userslist">
               <FaUsers />
               <p>Users List</p>
             </Link>

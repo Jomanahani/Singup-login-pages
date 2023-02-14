@@ -6,7 +6,10 @@ import { Link } from "react-router-dom";
 import SideBar from "../../Component/SideBar";
 import User from "../../Component/User";
 
+import { IoIosArrowBack } from "react-icons/io";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import {BsListUl} from 'react-icons/bs'
+
 import "./style.css";
 
 export default class index extends Component {
@@ -40,8 +43,14 @@ export default class index extends Component {
         <SideBar />
         <main className="usersMain">
           <User />
+          <Link to="/" className="Back">
+            <p>
+              <IoIosArrowBack />
+              Back
+            </p>
+          </Link>
           <div className="userList">
-            <h3>USERS LIST</h3>
+            <h3><BsListUl/> USERS LIST</h3>
             {this.state.isLoading ? (
               <div>"Loading..."</div>
             ) : (
@@ -49,7 +58,6 @@ export default class index extends Component {
                 <tr>
                   <th>ID</th>
                   <th>User Name</th>
-                  <th>is Admin</th>
                   <th>user details</th>
                   <th>delete</th>
                 </tr>
@@ -57,7 +65,6 @@ export default class index extends Component {
                   <tr key={user._id}>
                     <td>{user._id}</td>
                     <td>{user.name}</td>
-                    <td>{user.isAdmin ? "Yes" : "No"}</td>
                     <td>
                       <Link to={`/usersList/${user._id}`}>user details</Link>
                     </td>
