@@ -5,6 +5,7 @@ import Login from '../Pages/Login'
 import Signup from '../Pages/SingUp'
 import Home from '../Pages/Home'
 import Profile from '../Pages/Profile'
+import UserList from "../Pages/UserList";
 
 
 export function NotAuthorized(props) {
@@ -24,7 +25,7 @@ export function Authorized(props) {
     <>
       <Routes>
         <Route index element={<Home logout={props.logout} />} />
-        {/* <Route path='' element={< />} /> */}
+        <Route path='/userlist' element={<UserList />} />
         <Route path='/profile' element={<Profile />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

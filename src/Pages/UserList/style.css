@@ -1,0 +1,29 @@
+.usersMain {
+  grid-column-start: 2;
+}
+.userList {
+  margin-left: 3%;
+}
+.userList h3 {
+  font-size: 2rem;
+  padding-bottom: 2rem;
+}
+.users_Table {
+  margin: 0 auto;
+  width: 80%;
+  background-color: rgb(241, 236, 235);
+  border-collapse: collapse;
+}
+.users_Table td,
+th {
+  padding: 0.6rem;
+  text-align: center;
+  border: 1px solid rgb(37, 37, 41);
+}
+.delete {
+  font-size: 1.5rem;
+  color: red;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
